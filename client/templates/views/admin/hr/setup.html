@@ -1,0 +1,28 @@
+<template name="admin.hr.setup">
+
+    {{#if calendars }}
+    <ul class="list-unstyled">
+        {{#each calendars}}
+        <li class="calendar" data-id="{{id}}">
+            <div class="row">
+                <div class="col-md-8">
+                    <strong>{{name}}</strong>
+                    <br />
+                    {{#each departments}}
+                    <a data-value="{{id}}" class="btn-department btn btn-xs btn-default {{#if hasDepartment ..}}btn-success{{/if}}">{{name}}</a>
+                    {{/each}}
+                </div>
+                <div class="col-md-4 text-right">
+                    <button type="button" data-key="is_interviewer" class="btn btn-default btn-type {{#if is_interviewer}}btn-primary{{/if}}">Interviewer</button>
+                    <button type="button" data-key="is_room" class="btn btn-default btn-type {{#if is_room}}btn-primary{{/if}}">Room</button>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+    {{ else }}
+        {{#if notFound}}
+        <span class="alert alert-danger">Damn it. We couldn't find any calendar.</span>
+        {{/if}}
+    {{/if}}
+</template>

@@ -5,6 +5,17 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
 enricofoschi:crater.js
+coffeescript
+iron:router
+less
+london:body-class
+accounts-google
+service-configuration
+percolate:google-api
+alanning:roles
+reactive-var
+aldeed:simple-schema
+aldeed:autoform
+cottz:publish-relations
+percolate:synced-cron

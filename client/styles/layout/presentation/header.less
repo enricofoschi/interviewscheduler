@@ -1,0 +1,53 @@
+@import '../../_base/mixins.import.less';
+
+header {
+    background: #5E5EBB;
+    padding: 20px;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+
+    .header-title {
+        font-size: 26px;
+        color: #fff;
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+            color: #fff;
+        }
+    }
+
+    .drop-shadow(255, 255, 5px, 0.5);
+
+    #login-buttons {
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            border: 2px solid #fff;
+            padding: 5px 10px;
+            .border-radius();
+            display: block;
+            margin-top: 7px;
+        }
+
+        .login-close-text {
+            color: #252525;
+            position: relative;
+            text-transform: lowercase;
+            &:before {
+                content: "\f00d";
+                font-family: "FontAwesome";
+                font-size: 13px;
+                position: absolute;
+                top: 8px;
+                left: -5px;
+            }
+        }
+    }
+
+    #login-buttons-google {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+}

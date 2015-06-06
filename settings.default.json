@@ -1,0 +1,19 @@
+{
+    "mailgun": {
+        "apiKey": "",
+        "domain": "",
+        "from": "",
+        "username": "",
+        "password": ""
+    },
+    "kadiraAuth": {
+        "appId": "",
+        "appSecret": "",
+        "on": false
+    },
+    "users": [],
+    "google": {
+        "clientId": "",
+        "secret": ""
+    }
+}

@@ -1,0 +1,20 @@
+<template name="adminSidebar">
+    <ul class="nav" id="side-menu" data-refresh="{{refresh}}">
+        <li>
+            <a href="#"><i class="fa fa-edit"></i> Interviews
+                <i class="fa arrow"></i>
+            </a>
+            <ul class="nav nav-second-level collapse in">
+                <li>
+                    <a href="/admin/interview/new"><i class="fa fa-plus-circle fa-fw"></i> New Interview</a>
+                </li>
+                <li>
+                    <a href="/admin/interview/all"><i class="fa fa-users fa-fw"></i> All</a>
+                </li>
+                <li>
+                    <a href="/admin/hr/setup"><i class="fa fa-gears fa-fw"></i> Setup</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</template>

@@ -1,0 +1,13 @@
+<template name="presentation.interview.choose-time">
+    <div class="container top15 bottom15">
+        <h1 class="text-center">
+            Choose Your Preferred Time For The Interview
+        </h1>
+        <h2 class="text-center">
+            <strong>Local or UTC?</strong> Don't worry - this is your local time :)
+        </h2>
+
+        {{> interviewAvailability availabilities=availabilities interviewId=interviewId interview=interview}}
+
+    </div>
+</template>

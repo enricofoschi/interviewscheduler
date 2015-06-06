@@ -1,0 +1,27 @@
+<template name="admin.admins.edit">
+    {{#autoForm schema="CrowdInterview.Schema.User" collection="Meteor.users" doc=this id="adminAdminsForm" type='update'}}
+    <div class="row">
+        <div class="col-md-6">
+            {{> afQuickField name='profile.firstName'}}
+        </div>
+        <div class="col-md-6">
+            {{> afQuickField name='profile.lastName'}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="control-label">Email</label>
+            <input type="email" name="email" value="" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{> afQuickField name='password'}}
+        </div>
+        <div class="col-md-6">
+            {{> afQuickField name='passwordConfirmation'}}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-block btn-secondary">Save Changes</button>
+    {{/autoForm}}
+</template>

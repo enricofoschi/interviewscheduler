@@ -1,0 +1,24 @@
+.adaptive-field-wrapper .form-group {
+    position: relative;
+    margin-bottom: 20px;
+
+    label {
+        position: absolute;
+        top: -13px;
+        left: 10px;
+        font-size: 15px;
+        transition: all 0.3s linear;
+        opacity: 0;
+        font-weight: normal;
+        background:#fff;
+        padding:4px;
+        color:#444;
+    }
+    label.on {
+        color: #4481C4;
+    }
+    label.active {
+        top: -15px;
+        opacity: 1;
+    }
+}

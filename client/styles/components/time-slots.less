@@ -1,0 +1,42 @@
+@import '../_base/mixins.import.less';
+
+.time-slots-container {
+
+    margin-right: -3px;
+    margin-left: -3px;
+
+    .time-slots {
+
+        padding-left: 3px;
+        padding-right: 3px;
+
+        .time-slot {
+            text-align: center;
+            padding: 5px;
+            cursor: pointer;
+            background: #dde;
+            margin: 1px;
+            .transition();
+
+            &.disabled, &.disabled:hover {
+                background-color: #f0f0f0;
+                color: #aaa;
+                cursor: not-allowed;
+            }
+
+            &:hover
+            {
+                background: #ded;
+            }
+        }
+
+        .day {
+            display: block;
+            background: #335;
+            color: #fff;
+            padding: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+}

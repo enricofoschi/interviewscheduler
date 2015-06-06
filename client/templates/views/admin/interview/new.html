@@ -1,0 +1,53 @@
+<template name="admin.interview.new">
+    {{#autoForm class="adaptive-field-wrapper" collection="InterviewScheduler.Collections.Interview._collection"
+    id="insertInterviewForm" type="insert"}}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{> afQuickField class='input-lg' name='firstName' placeholder='schemaLabel'}}
+                </div>
+                <div class="col-md-6">
+                    {{> afQuickField class='input-lg' name='lastName' placeholder='schemaLabel'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{> afQuickField class='input-lg' name='email' placeholder='schemaLabel'}}
+                </div>
+                <div class="col-md-6">
+                    {{> afQuickField class='ddl-department input-lg' name='department_id' type='select' placeholder='schemaLabel'
+                    options=departments}}
+                </div>
+            </div>
+            <h3>Interviewers</h3>
+            {{#if availableCalendars}}
+            <ul class="list-unstyled select-calendars">
+                {{#each availableCalendars}}
+                <li class="calendar">
+                    <div class="pull-right">
+                        <div class="onoffswitch">
+                            <input type="checkbox" name="onoffswitch" class="cb-calendar-enabled onoffswitch-checkbox" data-id="{{id}}" id="onoff_{{id}}" checked>
+                            <label class="onoffswitch-label" for="onoff_{{id}}">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                    {{name}}
+                </li>
+                {{/each}}
+            </ul>
+            {{else}}
+            Please select a department first
+            {{/if}}
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Fire Up The Magic!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/autoForm}}
+</template>

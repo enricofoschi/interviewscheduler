@@ -1,0 +1,26 @@
+.move-out
+{
+    position:absolute;
+    left:-9999px;
+    visibility: hidden;
+}
+
+/* Selected Icon - visible if parent is selected */
+.icon-selected
+{
+    display: none;
+    position: absolute;
+    top:10px;
+    right:10px;
+}
+.selectable
+{
+    position: relative;
+}
+.selectable.selected
+{
+    .icon-selected
+    {
+        display:inherit;;
+    }
+}
