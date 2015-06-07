@@ -179,6 +179,8 @@ Meteor.methods {
                     interviewers: attendees
                 }
 
+                console.log hrManager.getEmail()
+
                 Helpers.Server.InterviewScheduler.Email.Send {
                     template: 'time-choosen-hr-manager'
                     subject: interview.firstName + ' ' + interview.lastName + ' set a time for the interview'
@@ -207,7 +209,9 @@ Meteor.methods {
 
             if interview.event_id
 
-                Meteor.wrapAsync(Crater.Api.Google.Calendar.DeleteEvent) interview.user_id, interview.calendar_id, interview.event_id
+                try
+                    Meteor.wrapAsync(Crater.Api.Google.Calendar.DeleteEvent) interview.user_id, interview.calendar_id, interview.event_id
+                catch error
 
             onCancel()
 

@@ -17,7 +17,6 @@ Meteor.startup( ->
                     Helpers.Client.Notifications.Success 'Interview cancelled!'
 
         createdRow: (row, data) ->
-            console.log data.status
             switch data.status
                 when 'declined'
                     $(row).addClass('danger')
@@ -97,8 +96,3 @@ Meteor.startup( ->
         ]
     }
 )
-
-if Meteor.isClient
-    $.fn.dataTable.ext.search.push (settings, data, dataIndex) ->
-        console.log 'ok'
-        return true
