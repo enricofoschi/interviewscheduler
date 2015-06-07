@@ -21,7 +21,7 @@
 
             e.preventDefault()
 
-            if isInterviewer() #or template.currentInstance.data.interview.decided
+            if isInterviewer() or template.currentInstance.data.interview.decided
                 return
 
             start_int = @start
