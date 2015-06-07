@@ -13,7 +13,7 @@ Meteor.methods {
             interview_id: interviewId
         }
 
-        if firstAvailability and (now - firstAvailability.updatedAt) / 1000 / 60 < 30
+        if firstAvailability and (now - firstAvailability.updatedAt) / 1000 / 60 < 5
             return
 
         InterviewScheduler.Collections.Availability.destroyAll {

@@ -29,7 +29,7 @@
             start = new moment(start)
 
             # Refactor using promises
-            Helpers.Client.Notifications.Confirm 'Do you want to start the interview at ' + start.format('HH:mm') + '?', =>
+            Helpers.Client.Notifications.Confirm 'Do you want to start the interview on ' + start.format('ddd Do MMM [at] HH:mm') + '?', =>
 
                 Helpers.Client.Notifications.Prompt 'The interview is going to be on Skype. What is your Skype ID?', (skypeId) ->
 
@@ -42,7 +42,7 @@
                             + '. <strong>Remember to send the invitation to the candidate through JobVite</strong>'
                         else
                             msg = 'Awesome. You will soon receive an invitation. Make sure you '\
-                            + 'Don\'t take any other appointments for ' + start.format('ddd Do MMM') + ' at ' + start.format('HH:mm')  + '.'
+                            + 'don\'t take any other appointments for ' + start.format('ddd Do MMM [at] HH:mm')  + '.'
 
                             Helpers.Client.Notifications.Success msg
     }
