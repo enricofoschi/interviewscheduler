@@ -4,6 +4,9 @@ Meteor.methods {
     'getNextAvailableTimeSlot': (interviewId) ->
         interview = InterviewScheduler.Collections.Interview.first interviewId
 
+        if not interview
+            return
+
         now = new Date
 
         firstAvailability = InterviewScheduler.Collections.Availability.first {
