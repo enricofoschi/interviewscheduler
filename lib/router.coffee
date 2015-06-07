@@ -80,9 +80,9 @@ Router.route '/login', {
         return
 }
 
-Router.route '/admin/hr/dashboard', {
+Router.route '/admin', {
     data: {
-        title: 'Your Awesome Dashboard'
+        title: 'Dashboard'
     }
     controller: AdminController
     name: 'admin_hr_dashboard'
@@ -90,9 +90,9 @@ Router.route '/admin/hr/dashboard', {
         calendars = InterviewScheduler.Collections.Calendar.find().fetch()
 
         if not calendars or not calendars.length
-            Router.go '/hr/setup'
+            Router.go '/admin/hr/setup'
         else
-            @.render 'admin.interview.dashboard'
+            @.render 'admin.hr.dashboard'
         return
 }
 
@@ -170,13 +170,6 @@ Router.route '/admin/interview/:id', {
                 availabilities: availabilities
             }
         }
-        return
-}
-
-Router.route '/admin', {
-    controller: AdminController
-    action: ->
-        @.render 'admin.index'
         return
 }
 
