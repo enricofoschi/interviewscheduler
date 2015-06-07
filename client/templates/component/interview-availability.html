@@ -2,6 +2,7 @@
     {{#if decided }}
     <h3 class="alert alert-success text-center">Chosen Time: {{decided}} (skype: {{interview.skype_id}})</h3>
     {{/if}}
+    {{#if daysMatrix}}
     {{#each daysMatrix}}
     {{refresh daysMatrix}}
     <div class="row time-slots-container">
@@ -17,4 +18,13 @@
         {{/each}}
     </div>
     {{/each}}
+    {{else}}
+    <div class="alert alert-danger">
+        {{#if isInterviewer}}
+        Damn, looks like we don't have enough available slots with these candidates.
+        {{else}}
+        We are sorry, but it seems that all slots have just been taken. Please get in touch with your HR contact.
+        {{/if}}
+    </div>
+    {{/if}}
 </template>

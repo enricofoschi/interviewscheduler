@@ -32,7 +32,7 @@ Router.route '/interview/choose-time/:id', {
         @.render 'presentation.interview.choose-time', {
             data: {
                 interviewId: @params.id
-                interview: interview || {}
+                interview: interview
                 availabilities: availabilities
             }
         }

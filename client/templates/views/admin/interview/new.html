@@ -1,6 +1,6 @@
 <template name="admin.interview.new">
     {{#autoForm class="adaptive-field-wrapper" collection="InterviewScheduler.Collections.Interview._collection"
-    id="insertInterviewForm" type="insert"}}
+    id="insertInterviewForm" type="insert" resetOnSuccess=false trimStrings=true}}
     <div class="row">
         <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 
@@ -21,7 +21,7 @@
                     options=departments}}
                 </div>
             </div>
-            <h3>Interviewers</h3>
+            <h3>Select Interviewers</h3>
             {{#if availableCalendars}}
             <ul class="list-unstyled select-calendars">
                 {{#each availableCalendars}}
@@ -42,7 +42,7 @@
             {{else}}
             Please select a department first
             {{/if}}
-            <div class="row">
+            <div class="row top15">
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Fire Up The Magic!</button>
                 </div>

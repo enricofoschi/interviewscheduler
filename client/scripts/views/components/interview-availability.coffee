@@ -51,6 +51,9 @@
 
         'daysMatrix': ->
 
+            if @interview?.availableSlots < GlobalSettings.minimumAvailabilities
+                return false
+
             days = _.groupBy @availabilities, (element, index) ->
                     date = new Date element.start * GlobalSettings.timeslotDivider
                     date.setHours 0, 0, 0, 0
@@ -85,7 +88,7 @@
 
         'getCalendars': (slot) ->
 
-            if slot.calendar_ids.length < GlobalSettings.minimumAvailability
+            if slot.calendar_ids.length < GlobalSettings.minimumInterviewersAvailable
                 return ''
 
             ret = ''
@@ -99,7 +102,7 @@
             ret
 
         'isSelectable': ->
-            @calendar_ids.length >= GlobalSettings.minimumAvailability
+            @calendar_ids.length >= GlobalSettings.minimumInterviewersAvailable
 
         'decided': ->
             if not @interview.decided
@@ -114,6 +117,9 @@
                 $('[data-toggle="tooltip"]').tooltip()
             , 10
             return ''
+
+        'isInterviewer': ->
+            isInterviewer()
     }
 
 )(Helpers.Client.TemplatesHelper.Handle('interviewAvailability'))

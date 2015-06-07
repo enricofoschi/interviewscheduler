@@ -1,5 +1,6 @@
 @GlobalSettings = {
     timeslotDivider: 60000
-    minimumAvailability: 3
+    minimumInterviewersAvailable: 3
     interviewers: 2
+    minimumAvailabilities: 3
 }

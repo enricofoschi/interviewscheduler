@@ -44,8 +44,8 @@
 
                         calendarIds.push interviewer_id
 
-                    if calendarIds.length < GlobalSettings.minimumAvailability
-                        Helpers.Client.Notifications.Error 'Uhm.... not enough interviewers.... no party! Please select at least ' + GlobalSettings.minimumAvailability + ' interviewers'
+                    if calendarIds.length < GlobalSettings.minimumInterviewersAvailable
+                        Helpers.Client.Notifications.Error 'Uhm.... not enough interviewers.... no party! Please select at least ' + GlobalSettings.minimumInterviewersAvailable + ' interviewers'
                         return false
 
                     if doc.department_id
@@ -55,8 +55,19 @@
 
                     doc
                 onSuccess: (type, id) ->
-                    Helpers.Client.Notifications.Success 'Yay! We just contacted the candidate. Here you can see what they choose.... in REAL TIME!'
-                    Router.go '/admin/interview/' + id
+                    Helpers.Client.MeteorHelper.CallMethod 'getNextAvailableTimeSlot', id, (e, result) ->
+                        if e
+                            Helpers.Client.Notifications.Error e
+                        else
+                            if result >= GlobalSettings.minimumAvailabilities
+                                Helpers.Client.MeteorHelper.CallMethod 'sendCandidateNewNotification', id, (e, r) ->
+                                    if e
+                                        Helpers.Client.Notifications.Error e
+                                    else
+                                        Helpers.Client.Notifications.Success 'Yay! We just contacted the candidate. Here you can see what they choose.... in REAL TIME!'
+                                        Router.go '/admin/interview/' + id
+                            else
+                                Helpers.Client.Notifications.Error 'Damn! There aren\'t enough available slots with the interviewers selected (only ' + result + ' available)'
             }
         }
 

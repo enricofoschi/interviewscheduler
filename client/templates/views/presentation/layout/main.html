@@ -1,8 +1,10 @@
 <template name="PresentationLayout">
 
-    {{ > presentation_header }}
+    <div class="main-container">
+        {{> yield}}
+    </div>
 
-    {{> yield}}
+    {{> footer}}
 
     {{ > blocker }}
     {{> autoformModals}}

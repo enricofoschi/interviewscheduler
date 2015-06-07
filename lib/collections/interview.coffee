@@ -44,8 +44,14 @@ class @InterviewScheduler.Collections.Interview extends BaseCollection
             type: [Object]
             optional: true
             blackbox: true
+        interviewersForSearch:
+            type: String
+            optional: true
         status:
             type: String
+            optional: true
+        availableSlots:
+            type: Number
             optional: true
     }
 
@@ -64,7 +70,7 @@ class @InterviewScheduler.Collections.Interview extends BaseCollection
                 response = responses[interviewer.calendar_id]
 
             # refreshing status with whatever non accepted status
-            if status is 'accepted' and response is not status
+            if status is 'accepted' and response isnt status
                 status = response
 
             interviewer.response = response
@@ -73,6 +79,9 @@ class @InterviewScheduler.Collections.Interview extends BaseCollection
         if _.find(@interviewers, (i) -> i.response is 'declined')
             status = 'declined'
 
-        console.log 'Status: ' + status
-        console.log @interviewers
+        @update {
+            interviewers: @interviewers
+            status: status
+            interviewersForSearch: _.map(@interviewers, (i) -> i.calendar_id).join(' ')
+        }
 

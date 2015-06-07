@@ -42,6 +42,23 @@
 
             @update updateObj
 
+        'click .btn-set-primary': (e) ->
+            # Disabling current primary calendar
+            primaryCalendar = InterviewScheduler.Collections.Calendar.first {
+                user_id: Meteor.userId()
+                is_primary: true
+            }
+
+            if primaryCalendar
+                primaryCalendar.update {
+                    is_primary: false
+                }
+
+            # Setting current as primary
+            @update {
+                is_primary: true
+            }
+
         'click .btn-department': (e) ->
 
             $target = $(e.target)
