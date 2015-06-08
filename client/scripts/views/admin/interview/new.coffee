@@ -54,8 +54,6 @@
                     doc.calendar_ids = calendarIds
 
                     doc
-            beginSubmit: ->
-                Helpers.Client.Loader.Show()
             onSuccess: (type, id) ->
                     Helpers.Client.MeteorHelper.CallMethod 'getNextAvailableTimeSlot', id, (e, result) ->
                         if e
