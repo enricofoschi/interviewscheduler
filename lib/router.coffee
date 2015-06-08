@@ -12,7 +12,7 @@ Router.route '/', {
     controller: PresentationController
     name: 'presentation_core_index'
     action: ->
-        @.render 'presentation.core.index'
+        Router.go '/login'
         return
 }
 
