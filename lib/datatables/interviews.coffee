@@ -81,7 +81,7 @@ Meteor.startup( ->
                     for own key, value of interviewersByStatus
 
                         label = key
-                        if key is 'needsAction' or not key
+                        if key is 'needsAction' or key is undefined or key is 'undefined'
                             label = 'Must RSVP'
 
                         content += '<strong class="block">' + label + ': </strong><ul class="list-unstyled">'
