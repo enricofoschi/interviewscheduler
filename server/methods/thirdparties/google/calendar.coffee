@@ -2,8 +2,6 @@
 
 Meteor.methods {
     'updateCalendarsList': (callback) ->
-        @unblock()
-
         calendars = Meteor.wrapAsync(Crater.Api.Google.Calendar.List)(Meteor.userId())
 
         userId = Meteor.userId()
