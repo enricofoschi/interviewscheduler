@@ -19,12 +19,14 @@
     </div>
     {{/each}}
     {{else}}
-    <div class="alert alert-danger">
-        {{#if isInterviewer}}
-        Damn, looks like we don't have enough available slots with these candidates.
-        {{else}}
-        We are sorry, but it seems that all slots have just been taken. Please get in touch with your HR contact.
+        {{#if initialized}}
+        <div class="alert alert-danger">
+            {{#if isInterviewer}}
+            Damn, looks like we don't have enough available slots with these candidates.
+            {{else}}
+            We are sorry, but it seems that all slots have just been taken. Please get in touch with your HR contact.
+            {{/if}}
+        </div>
         {{/if}}
-    </div>
     {{/if}}
 </template>

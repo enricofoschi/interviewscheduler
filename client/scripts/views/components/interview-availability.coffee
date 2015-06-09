@@ -2,10 +2,17 @@
 
     calendars = {}
 
+    initialized = new ReactiveVar false
+
+    reset = ->
+        initialized.set false
+
     isInterviewer = ->
         template.currentInstance.data.interview.user_id is Meteor.userId() and Meteor.userId()
 
     template.onCustomCreated = ->
+
+        reset()
 
         # Calendars
         calendarsData = InterviewScheduler.Collections.Calendar.all()
@@ -14,7 +21,10 @@
             calendars[calendar.id] = calendar.name
 
         # Resetting availability
-        Helpers.Client.MeteorHelper.CallMethod 'getNextAvailableTimeSlot', template.currentInstance.data.interviewId
+        Helpers.Client.MeteorHelper.CallMethod 'getNextAvailableTimeSlot', template.currentInstance.data.interviewId, (e, r) ->
+            window.setTimeout ->
+                initialized.set true
+            , 0
 
     template.events {
         'click .time-slot.selectable': (e) ->
@@ -70,6 +80,9 @@
             retVal = _.sortBy retVal, (r) -> r.day
 
             retVal.toMatrix 6
+
+        'initialized': ->
+            initialized.get()
 
         'getDay': (timestamp) ->
             day = new Date timestamp * GlobalSettings.timeslotDivider
