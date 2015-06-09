@@ -1,4 +1,96 @@
 <template name="admin.hr.dashboard">
-If you didn't do it already, please <a href="/admin/hr/setup">Setup your calendars</a>.
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{interviewsCount}}</div>
+                            <div>Total</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/admin/interview/all">
+                    <div class="panel-footer">
+                        <span class="pull-left">Unscheduled</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-clock-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{pendingInterviewsCount}}</div>
+                            <div>Scheduled</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/admin/interview/all">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Interviews</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-check-circle fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{acceptedInterviewsCount}}</div>
+                            <div>Accepted</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/admin/interview/all">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Interviews</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{declinedInterviewsCount}}</div>
+                            <div>Declined</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/admin/interview/all">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Interviews</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </template>

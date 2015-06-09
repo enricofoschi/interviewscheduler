@@ -82,17 +82,38 @@ Router.route '/login', {
 
 Router.route '/admin', {
     data: {
-        title: 'Dashboard'
+        title: 'Upcoming Interviews'
     }
     controller: AdminController
     name: 'admin_hr_dashboard'
+    waitOn: ->
+        Meteor.subscribe 'interviews'
     action: ->
         calendars = InterviewScheduler.Collections.Calendar.find().fetch()
 
         if not calendars or not calendars.length
             Router.go '/admin/hr/setup'
         else
-            @.render 'admin.hr.dashboard'
+
+            now = new Date
+            now = now.getTime() / GlobalSettings.timeslotDivider
+
+            upcomingInterviews = InterviewScheduler.Collections.Interview.where {
+                decided:
+                    $gte: now
+            }
+
+            unscheduledInterviews = InterviewScheduler.Collections.Interview.where {
+                decided: null
+            }
+
+            @.render 'admin.hr.dashboard', {
+                data:
+                    interviewsCount: unscheduledInterviews.length
+                    pendingInterviewsCount: _.filter(upcomingInterviews, (i) -> i.status is 'needsAction').length
+                    acceptedInterviewsCount: _.filter(upcomingInterviews, (i) -> i.status is 'accepted').length
+                    declinedInterviewsCount: _.filter(upcomingInterviews, (i) -> i.status is 'declined').length
+            }
         return
 }
 
