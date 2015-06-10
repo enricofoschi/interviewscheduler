@@ -31,7 +31,7 @@
 
             e.preventDefault()
 
-            if isInterviewer() or template.currentInstance.data.interview.decided
+            if template.currentInstance.data.interview.decided
                 return
 
             start_int = @start
@@ -55,12 +55,18 @@
                             + 'don\'t take any other appointments for ' + start.format('ddd Do MMM [at] HH:mm')  + '.'
 
                             Helpers.Client.Notifications.Success msg
+
+        'click .btn-cancel': =>
+            Helpers.Client.Notifications.Confirm 'Do you really want to cancel this appointment? This will send a cancellation notice to the interview managers as well. It\'s ok if you want to reschedule, but please don\'t overuse this functionality :)', =>
+                Meteor.call 'cancelInterviewEvent', template.currentInstance.data.interview.id, (e, r) ->
+                    if e
+                        Helpers.Client.Notifications.Error e
     }
 
     template.helpers {
 
         'daysMatrix': ->
-
+            @refresher # used to ensure this refreshes when parents commands a refresh
             if @interview?.availableSlots < GlobalSettings.minimumAvailabilities
                 return false
 
@@ -133,6 +139,14 @@
 
         'isInterviewer': ->
             isInterviewer()
+
+        'canCancel': ->
+            if @interview.decided
+                decided = new Date(@interview.decided * GlobalSettings.timeslotDivider)
+                now = new Date()
+                if (decided - now) / (1000/60/60/24) > 2
+                    return true
+            return false
     }
 
 )(Helpers.Client.TemplatesHelper.Handle('interviewAvailability'))

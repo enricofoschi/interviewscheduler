@@ -3,11 +3,26 @@
         <h1 class="text-center">
             Choose Your Preferred Time For The Interview
         </h1>
-        <h2 class="text-center">
-            <strong>Local or UTC?</strong> Don't worry - this is your local time :)
-        </h2>
 
-        {{> interviewAvailability availabilities=availabilities interviewId=interviewId interview=interview}}
+        <p class="text-center font20">
+
+            <div class="row {{#if editTimezone}}{{else}}hide{{/if}}">
+                    Choose your timezone:
+                    <select class="block form-control ddl-timezones" style="width:300px">
+                        <option value="">Select a timezone</option>
+                        {{#each timezones}}
+                        <option>{{this}}</option>
+                        {{/each}}
+                    </select>
+                    <small><a class="btn-change-timezone">cancel</a></small>
+            </div>
+            <div class="{{#if editTimezone}}hide{{/if}}">
+                Adjusted to your timezone ({{timezone}} <small><a class="btn-change-timezone"><i class="fa fa-edit"></i></a></small>)
+            </div>
+        </p>
+
+        {{> interviewAvailability availabilities=availabilities interviewId=interviewId interview=interview
+        refresher=refresher}}
 
     </div>
 </template>

@@ -1,32 +1,38 @@
 <template name="interviewAvailability">
     {{#if decided }}
-    <h3 class="alert alert-success text-center">Chosen Time: {{decided}} (skype: {{interview.skype_id}})</h3>
-    {{/if}}
-    {{#if daysMatrix}}
-    {{#each daysMatrix}}
-    {{refresh daysMatrix}}
-    <div class="row time-slots-container">
-        {{#each this}}
-        <div class="col-md-2 col-xs-6 col-sm-4 time-slots">
-            <span class="day">{{getDay day}}</span>
-            <ul class="list-unstyled">
-                {{#each availabilities}}
-                <li class="time-slot {{#if isSelectable}}selectable{{else}}disabled{{/if}}" data-toggle="tooltip" title="{{getCalendars this}}">{{getSlot this}}</li>
-                {{/each}}
-            </ul>
-        </div>
-        {{/each}}
-    </div>
-    {{/each}}
+        <h3 class="alert alert-success text-center">Chosen Time: {{decided}} (skype: {{interview.skype_id}})
+
+        {{#if canCancel}}
+            <small><a class="btn-cancel text-danger"><i class="fa fa-times"></i> cancel</a></small>
+        {{/if}}
+        </h3>
     {{else}}
-        {{#if initialized}}
-        <div class="alert alert-danger">
-            {{#if isInterviewer}}
-            Damn, looks like we don't have enough available slots with these candidates.
-            {{else}}
-            We are sorry, but it seems that all slots have just been taken. Please get in touch with your HR contact.
+        {{#if daysMatrix}}
+            {{#each daysMatrix}}
+                {{refresh daysMatrix}}
+                <div class="row time-slots-container">
+                    {{#each this}}
+                    <div class="col-md-2 col-xs-6 col-sm-4 time-slots">
+                        <span class="day">{{getDay day}}</span>
+                        <ul class="list-unstyled">
+                            {{#each availabilities}}
+                            <li class="time-slot {{#if isSelectable}}selectable{{else}}disabled{{/if}}" data-toggle="tooltip" title="{{getCalendars this}}">{{getSlot this}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{/each}}
+                </div>
+            {{/each}}
+        {{else}}
+            {{#if initialized}}
+            <div class="alert alert-danger">
+                {{#if isInterviewer}}
+                    Damn, looks like we don't have enough available slots with these candidates.
+                {{else}}
+                    We are sorry, but it seems that all slots have just been taken. Please get in touch with your HR contact.
+                {{/if}}
+            </div>
             {{/if}}
-        </div>
         {{/if}}
     {{/if}}
 </template>

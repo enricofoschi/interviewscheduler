@@ -111,6 +111,7 @@ Meteor.methods {
         interview.update {
             decided: start
             skype_id: skypeId
+            status: 'needsAction'
         }
 
         availability = InterviewScheduler.Collections.Availability.first {
@@ -182,8 +183,6 @@ Meteor.methods {
                     interviewers: attendees
                 }
 
-                console.log hrManager.getEmail()
-
                 Helpers.Server.InterviewScheduler.Email.Send {
                     template: 'time-choosen-hr-manager'
                     subject: interview.firstName + ' ' + interview.lastName + ' set a time for the interview'
@@ -202,21 +201,30 @@ Meteor.methods {
     'cancelInterview': (interview_id) ->
         interview = InterviewScheduler.Collections.Interview.first interview_id
 
-        if interview.user_id is Meteor.userId()
+        onCancel = =>
+            interview.destroy()
+            InterviewScheduler.Collections.Availability.destroyAll {
+                interview_id: interview_id
+            }
 
-            onCancel = =>
-                interview.destroy()
-                InterviewScheduler.Collections.Availability.destroyAll {
-                    interview_id: interview_id
-                }
+        if interview.event_id
 
-            if interview.event_id
+            try
+                Meteor.wrapAsync(Crater.Api.Google.Calendar.DeleteEvent) interview.user_id, interview.calendar_id, interview.event_id
+            catch error
 
-                try
-                    Meteor.wrapAsync(Crater.Api.Google.Calendar.DeleteEvent) interview.user_id, interview.calendar_id, interview.event_id
-                catch error
+        onCancel()
 
-            onCancel()
+    'cancelInterviewEvent': (interview_id) ->
+        interview = InterviewScheduler.Collections.Interview.first interview_id
+
+        Meteor.wrapAsync(Crater.Api.Google.Calendar.DeleteEvent) interview.user_id, interview.calendar_id, interview.event_id
+
+        interview.update {
+            decided: null
+            event_id: null
+            status: null
+        }
 
     'sendCandidateNewNotification': (interview_id) ->
 
