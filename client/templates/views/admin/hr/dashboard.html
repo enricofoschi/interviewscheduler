@@ -9,13 +9,13 @@
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">{{interviewsCount}}</div>
-                            <div>Total</div>
+                            <div>Unscheduled</div>
                         </div>
                     </div>
                 </div>
                 <a href="/admin/interview/all">
                     <div class="panel-footer">
-                        <span class="pull-left">Unscheduled</span>
+                        <span class="pull-left">View Interviews</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 
                         <div class="clearfix"></div>
@@ -93,4 +93,29 @@
             </div>
         </div>
     </div>
+    {{#if interviewsByDepartmentMatrix}}
+    {{#each interviewsByDepartmentMatrix}}
+    <div class="row">
+        {{#each this}}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Department:</strong> {{key}}
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="row chart-container">
+                        <div class="col-xs-8">
+                            <canvas class="pie-chart block" height="400" data-chart="{{getChartData}}"></canvas>
+                        </div>
+                        <div class="col-xs-4 legend-container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{/each}}
+    {{/if}}
 </template>

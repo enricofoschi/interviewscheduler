@@ -83,6 +83,7 @@ Router.route '/login', {
 Router.route '/admin', {
     data: {
         title: 'Upcoming Interviews'
+        titleAction: '<a class="action" href="/admin/interview/new"> <i class="fa fa-plus-circle"></i> add new</a>'
     }
     controller: AdminController
     name: 'admin_hr_dashboard'
@@ -98,19 +99,17 @@ Router.route '/admin', {
             now = new Date
             now = now.getTime() / GlobalSettings.timeslotDivider
 
-            upcomingInterviews = InterviewScheduler.Collections.Interview.where {
-                decided:
-                    $gte: now
-            }
+            allInterviews = InterviewScheduler.Collections.Interview.all()
 
-            unscheduledInterviews = InterviewScheduler.Collections.Interview.where {
-                decided: null
-            }
+            upcomingInterviews = _.filter allInterviews, (interview) -> interview.decided > now
+            unscheduledInterviews = _.filter allInterviews, (interview) -> !interview.decided
 
             @.render 'admin.hr.dashboard', {
                 data:
+                    allInterviews: allInterviews
+                    upcomingInterviews: upcomingInterviews
                     interviewsCount: unscheduledInterviews.length
-                    pendingInterviewsCount: _.filter(upcomingInterviews, (i) -> i.status is 'needsAction').length
+                    pendingInterviewsCount: _.filter(upcomingInterviews, (i) -> (i.status is 'needsAction') or (not i.status and i.decided)).length
                     acceptedInterviewsCount: _.filter(upcomingInterviews, (i) -> i.status is 'accepted').length
                     declinedInterviewsCount: _.filter(upcomingInterviews, (i) -> i.status is 'declined').length
             }
