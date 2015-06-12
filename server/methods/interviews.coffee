@@ -218,13 +218,16 @@ Meteor.methods {
     'cancelInterviewEvent': (interview_id) ->
         interview = InterviewScheduler.Collections.Interview.first interview_id
 
-        Meteor.wrapAsync(Crater.Api.Google.Calendar.DeleteEvent) interview.user_id, interview.calendar_id, interview.event_id
-
         interview.update {
             decided: null
             event_id: null
             status: null
+            skype_id: null
         }
+
+        try
+            Meteor.wrapAsync(Crater.Api.Google.Calendar.DeleteEvent) interview.user_id, interview.calendar_id, interview.event_id
+        catch error
 
     'sendCandidateNewNotification': (interview_id) ->
 
@@ -233,8 +236,9 @@ Meteor.methods {
 
         Helpers.Server.InterviewScheduler.Email.Send {
             template: 'interview-candidate'
-            subject: 'When Do You Want To Interview With Rocket Internet?'
+            subject: 'When Do You Want To Interview With ' + GlobalSettings.companyName + '?'
             data: {
+                companyName: GlobalSettings.companyName
                 firstName: interview.firstName
                 url: Meteor.absoluteUrl 'interview/choose-time/' + interview.id
             }

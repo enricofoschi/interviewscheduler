@@ -43,13 +43,10 @@
 
                 Helpers.Client.Notifications.Prompt 'The interview is going to be on Skype. What is your Skype ID?', (skypeId) ->
 
-                    Helpers.Client.MeteorHelper.CallMethod 'setInterview',template.currentInstance.data.interviewId, start_int, skypeId, (e, r) =>
+                    Helpers.Client.MeteorHelper.CallMethod 'setInterview', template.currentInstance.data.interviewId, start_int, skypeId, (e, r) =>
 
                         if isInterviewer()
-                            interviewers = r.interviewers.join(', ')
-
-                            Helpers.Client.Notifications.Success 'Great. An Invitation has been sent to ' + interviewers
-                            + '. <strong>Remember to send the invitation to the candidate through JobVite</strong>'
+                            Helpers.Client.Notifications.Success 'Great. An Invitation has been sent to the interviewers. <strong>Remember to send the invitation to the candidate through JobVite</strong>'
                         else
                             msg = 'Awesome. You will soon receive an invitation. Make sure you '\
                             + 'don\'t take any other appointments for ' + start.format('ddd Do MMM [at] HH:mm')  + '.'
@@ -58,7 +55,7 @@
 
         'click .btn-cancel': =>
             Helpers.Client.Notifications.Confirm 'Do you really want to cancel this appointment? This will send a cancellation notice to the interview managers as well. It\'s ok if you want to reschedule, but please don\'t overuse this functionality :)', =>
-                Meteor.call 'cancelInterviewEvent', template.currentInstance.data.interview.id, (e, r) ->
+                Helpers.Client.MeteorHelper.CallMethod 'cancelInterviewEvent', template.currentInstance.data.interview.id, (e, r) ->
                     if e
                         Helpers.Client.Notifications.Error e
     }

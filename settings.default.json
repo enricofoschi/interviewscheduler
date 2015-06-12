@@ -1,8 +1,6 @@
 {
     "absoluteUrl": "",
     "mailgun": {
-        "apiKey": "",
-        "domain": "",
         "from": "",
         "username": "",
         "password": ""

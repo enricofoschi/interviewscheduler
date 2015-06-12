@@ -99,19 +99,26 @@ Router.route '/admin', {
             now = new Date
             now = now.getTime() / GlobalSettings.timeslotDivider
 
-            allInterviews = InterviewScheduler.Collections.Interview.all()
-
-            upcomingInterviews = _.filter allInterviews, (interview) -> interview.decided > now
-            unscheduledInterviews = _.filter allInterviews, (interview) -> !interview.decided
+            allInterviews = InterviewScheduler.Collections.Interview.where {
+                $or: [
+                    {
+                        decided: null
+                    },
+                    {
+                        decided:
+                            $gte: now
+                    }
+                ]
+            }
 
             @.render 'admin.hr.dashboard', {
                 data:
                     allInterviews: allInterviews
-                    upcomingInterviews: upcomingInterviews
-                    interviewsCount: unscheduledInterviews.length
-                    pendingInterviewsCount: _.filter(upcomingInterviews, (i) -> (i.status is 'needsAction') or (not i.status and i.decided)).length
-                    acceptedInterviewsCount: _.filter(upcomingInterviews, (i) -> i.status is 'accepted').length
-                    declinedInterviewsCount: _.filter(upcomingInterviews, (i) -> i.status is 'declined').length
+                    upcomingInterviews: _.filter(allInterviews, (i) -> i.decided).length
+                    interviewsCount: allInterviews.length
+                    pendingInterviewsCount: _.filter(allInterviews, (i) -> (i.status is 'needsAction') or (not i.status and i.decided)).length
+                    acceptedInterviewsCount: _.filter(allInterviews, (i) -> i.status is 'accepted').length
+                    declinedInterviewsCount: _.filter(allInterviews, (i) -> i.status is 'declined').length
             }
         return
 }

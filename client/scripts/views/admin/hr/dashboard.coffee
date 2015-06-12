@@ -35,7 +35,7 @@
                     i.status = 'needsAction'
 
 
-            statuses = _.groupBy @value, (interview) -> interview.status
+            statuses = _.groupBy @value, (interview) -> if not interview.status or interview.status is 'undefined' or interview.status is 'null' then 'unscheduled' else interview.status
 
             for own key, interviews of statuses
 
@@ -43,7 +43,7 @@
 
                 data.push {
                     value: interviews.length
-                    label: if key is 'undefined' then 'unscheduled' else key
+                    label: key
                     labelFontSize: 16
                     color: '#' + color.toString(16)
                     highlight: '#'+(color + 100).toString(16)

@@ -19,3 +19,4 @@ aldeed:simple-schema
 aldeed:autoform
 cottz:publish-relations
 percolate:synced-cron
+spiderable
