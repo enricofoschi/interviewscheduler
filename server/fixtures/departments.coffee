@@ -9,10 +9,25 @@ class @Fixture.Departments extends Fixture.Base
 
     @_data: [
         {
-            name: 'IT'
+            name: 'Engineering'
         },
         {
             name: 'QA'
+        },
+        {
+            name: 'Design'
+        },
+        {
+            name: 'Product'
+        },
+        {
+            name: 'BI'
+        },
+        {
+            name: 'Mobile'
+        },
+        {
+            name: 'SysOps'
         },
         {
             name: 'Seller Centre'

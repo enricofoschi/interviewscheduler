@@ -1,8 +1,8 @@
 @GlobalSettings = {
     timeslotDivider: 60000
-    minimumInterviewersAvailable: 3
+    minimumInterviewersAvailable: 1
     interviewers: 2
-    minimumAvailabilities: 3
+    minimumAvailabilities: 1
     companyName: 'Rocket Internet'
     hrEmails: '@rocket-internet.de'
 }

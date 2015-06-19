@@ -23,7 +23,7 @@ ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
 email@1.0.6
-enricofoschi:crater.js@0.0.8
+enricofoschi:crater.js@0.0.9
 fastclick@1.0.3
 fortawesome:fontawesome@4.3.0
 geojson-utils@1.0.3
@@ -55,6 +55,7 @@ meteor-platform@1.2.2
 meteorhacks:async@1.0.0
 meteorhacks:kadira@2.21.0
 meteorhacks:meteorx@1.3.1
+meteorhacks:npm@1.3.0
 meteorhacks:ssr@2.1.2
 minifiers@1.1.5
 minimongo@1.0.8
@@ -65,6 +66,7 @@ mongo-livedata@1.0.8
 mpowaga:string-template@0.1.0
 mrt:q@1.0.1
 mrt:underscore-string-latest@2.3.3
+npm-container@1.0.0
 oauth@1.1.4
 oauth2@1.1.3
 observe-sequence@1.0.6
