@@ -46,7 +46,7 @@
                     Helpers.Client.MeteorHelper.CallMethod 'setInterview', template.currentInstance.data.interviewId, start_int, skypeId, (e, r) =>
 
                         if isInterviewer()
-                            Helpers.Client.Notifications.Success 'Great. An Invitation has been sent to the interviewers. <strong>Remember to send the invitation to the candidate through JobVite</strong>'
+                            Helpers.Client.Notifications.Success 'Oh, you choose for the candidate. That\'s ok. An Invitation has been sent to the interviewers and a notification to the candidate.'
                         else
                             msg = 'Awesome. You will soon receive an invitation. Make sure you '\
                             + 'don\'t take any other appointments for ' + start.format('ddd Do MMM [at] HH:mm')  + '.'

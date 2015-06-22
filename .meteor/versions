@@ -23,7 +23,7 @@ ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
 email@1.0.6
-enricofoschi:crater.js@0.0.9
+enricofoschi:crater.js@0.0.17
 fastclick@1.0.3
 fortawesome:fontawesome@4.3.0
 geojson-utils@1.0.3
@@ -82,18 +82,14 @@ retry@1.0.3
 routepolicy@1.0.5
 service-configuration@1.0.4
 session@1.1.0
-softwarerero:accounts-t9n@1.0.9
 spacebars@1.0.6
 spacebars-compiler@1.0.6
 spiderable@1.0.7
 templating@1.1.1
 tracker@1.0.7
-twbs:bootstrap@3.3.4
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4
-useraccounts:bootstrap@1.10.0
-useraccounts:core@1.10.0
 webapp@1.2.0
 webapp-hashing@1.0.3
 yogiben:autoform-modals@0.3.5

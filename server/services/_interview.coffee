@@ -234,6 +234,21 @@ class @Crater.Services.InterviewScheduler.Interview extends Crater.Services.Inte
                     from: 'noreply@firstgra.de'
                 }
 
+                Helpers.Server.InterviewScheduler.Email.Send {
+                    template: 'time-choosen-candidate'
+                    subject: interview.firstName + ' ' + interview.lastName + ' set a time for the interview'
+                    data: {
+                        firstName: hrManager.getFirstName()
+                        url: Meteor.absoluteUrl 'admin/interview/all'
+                        interviewers: _.map(attendees, (a) -> a.calendar_id)
+                        time: (new moment(startDate)).format('ddd Do MMM [at] HH:mm')
+                        skype: interview.skype_id
+                        candidateFirstName: interview.firstName
+                    }
+                    to: hrManager.getEmail()
+                    from: 'noreply@firstgra.de'
+                }
+
     cancelInterview: (interview_id) ->
         interview = InterviewScheduler.Collections.Interview.first interview_id
 
