@@ -81,7 +81,7 @@ Package.onUse(function(api) {
 		'client/scripts/lib/sweetalert.min.js',
 		'client/scripts/lib/bootbox.min.js',
 		'client/scripts/loaders/adaptive-label.js',
-		'client/scripts/start.coffee',
+		'client/startup.coffee',
         'client/styles/lib/datatables.fixes.css',
 		'client/styles/lib/sweetalert.css',
 	], 'client');
@@ -93,6 +93,7 @@ Package.onUse(function(api) {
 		'server/api/_base/oauth2.coffee',
 		'server/api/Google/_base.coffee',
 		'server/api/Google/calendar.coffee',
+		'server/api/Google/event.coffee',
 		'server/api/Xing/_base.coffee',
 		'server/api/Xing/authentication.coffee',
         'server/api/LinkedIn/_base.coffee',
